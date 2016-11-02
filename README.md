@@ -51,6 +51,7 @@ Pre-requisties:
 ### Sample Output:
 
 c:\JET\UC\Scripts>python TrafficManagement.py
+```
 Connecting to server
 
 Established connection with the r0nec
@@ -66,8 +67,8 @@ IFL input traffic rate is below threshold, hence deleting route
 ------------------------------------------------------------------------
 Falling threshold
 No configuration changes required
-
-
+```
+```
 regress@r0nec> show route 1.1.1.1    
 
 inet.0: 34 destinations, 34 routes (33 active, 0 holddown, 1 hidden)
@@ -75,3 +76,4 @@ inet.0: 34 destinations, 34 routes (33 active, 0 holddown, 1 hidden)
 
 1.1.1.1/32         *[Static/5] 00:00:19, metric2 0
                     > to 10.216.223.254 via fxp0.0
+```
