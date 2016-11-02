@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import collections
 import datetime
 import glob
@@ -10,8 +11,8 @@ import re
 import smtplib
 import struct
 import sys
+import textwrap
 import time
-
 import grpc
 import paho.mqtt.client as mqtt
 
@@ -267,7 +268,38 @@ def mail(message):
 
 
 def main():
-    global route_stub
+    
+    global route_stub, R1, R1_IFL_SNMP_INDEX, APP_USER, APP_PASSWORD
+    parser = argparse.ArgumentParser(
+            formatter_class=argparse.RawTextHelpFormatter,
+            description=textwrap.dedent('''\
+                                        Tool to insert and delete static route,
+                                        based on traffic.
+                                            '''),
+            usage="\nThis tool enables you to capture and audit runtime environment of "
+            "\nnetworked devices running the Junos operating system (Junos OS)\n")
+    parser.add_argument(
+            "-d","--device",
+            help="hostname or ip of the monitored device",
+            type=str)
+    parser.add_argument(
+            "-u","--user",
+            help="username for device",
+            type=str)
+    parser.add_argument(
+            "-p","--passwd",
+            help="password for device",
+            type=str)
+    parser.add_argument(
+            "-i","--index",
+            help="SNMP index of interface",
+            type=str)
+    args, unknown = parser.parse_known_args()
+    R1 = args.device or R1
+    APP_USER = args.user or APP_USER
+    APP_PASSWORD = args.passwd or APP_PASSWORD
+    R1_IFL_SNMP_INDEX = args.index or R1_IFL_SNMP_INDEX
+    
     channel = grpc.insecure_channel(R1+':32767')
     res = _authenticateChannel(channel, APP_USER, APP_PASSWORD, '1212914')
     print "Authentication "+('success' if res else 'failure')
