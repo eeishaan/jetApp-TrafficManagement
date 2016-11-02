@@ -1,4 +1,4 @@
-Introduction
+# Introduction
 
 JET application "TrafficManagement.py" listnes to JET notifications. Whenever JET client receives monitored IFL
 traffic rate rising threshold event, it pushes some of the prefixes traffic via redundant/backup link by programming router's
@@ -6,18 +6,17 @@ control plane using jet RouteAdd API and delete routes in case of falling thress
 
 Note: Before using the app, modify all variables like Router name, IFL, etc details
 
-Topology:
+# Topology
 
 R0-------------------------------R1
 (IFL ge-0/0/0.0)        10.1.1.2/24
      IP-10.1.1.1/24
 Pre-requisties:
-
 1. IFL to be configured between router RO and router R1
 2. generate traffic from R1 to R0
 3. Install python 2.7.X in off-box(server, desktop, etc) and Jet client package in case App to be executed from Off-box
 
-How to run App from On-box:
+## How to run App from On-box:
 
 1. Copy App into R0 /var/db/scripts/jet/App.py
 2. Configure above as jet script
@@ -41,7 +40,7 @@ How to run App from On-box:
 5. Run app from On-box
     jet TrafficManagement.py
     Note: to receive rising thershold events, do ping from R1 on R0 IFL IP with max size.
-How to run App from off-box:
+## How to run App from off-box:
 
 1. Copy App into off-box
 2. Modify Router R0 name, interface index, destination IP, next-hop IP
@@ -49,7 +48,7 @@ How to run App from off-box:
     python TrafficManagement.py
     
     
-Sample Output:
+### Sample Output:
 
 c:\JET\UC\Scripts>python TrafficManagement.py
 Connecting to server
