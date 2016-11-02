@@ -7,12 +7,12 @@ import json
 import logging
 import os
 import re
+import smtplib
 import struct
 import sys
 import time
 
 import grpc
-import smtplib
 import paho.mqtt.client as mqtt
 
 import authentication_service_pb2
