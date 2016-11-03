@@ -30,6 +30,7 @@ DIP = '1.1.1.1/32'
 NIP = '10.1.1.2'
 APP_USER = 'abcd'
 APP_PASSWORD = 'abcd'
+GRPC_PORT = '32767'
 
 DEFAULT_ROUTE_NEXTHOP_IP = NIP
 DEFAULT_ROUTE_GET_TABLE_NAME = 'inet.0'
@@ -300,7 +301,7 @@ def main():
     APP_PASSWORD = args.passwd or APP_PASSWORD
     R1_IFL_SNMP_INDEX = args.index or R1_IFL_SNMP_INDEX
     
-    channel = grpc.insecure_channel(R1+':32767')
+    channel = grpc.insecure_channel(R1+':'+GRPC_PORT)
     res = _authenticateChannel(channel, APP_USER, APP_PASSWORD, '1212914')
     print "Authentication "+('success' if res else 'failure')
     if res is False:
